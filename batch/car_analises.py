@@ -1,10 +1,8 @@
 from pyspark.sql import SparkSession,functions as f
 
-import os
 if __name__ == '__main__':
 
     spark = SparkSession.builder.config('spark.app.name','Cars Analises').enableHiveSupport().getOrCreate()
-    print(os.getcwd())
     cars_df = spark.read.option("multiline", "true").json(f'resources/cars.json')
     
     cars_df.show()
