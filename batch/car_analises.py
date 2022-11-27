@@ -12,17 +12,17 @@ if __name__ == '__main__':
     cars_df = spark.read.option("multiline", "true").json(f'resources/cars.json')
     
 
-    log.warn('========================Show cars tabl========================S')
+    log.warn('========================Show cars table========================')
 
 
     cars_df.show()
 
-    log.info('========================SCount rows========================S')
+    log.info('========================Count rows========================')
     print(f'Total rows: ${cars_df.count()}')
     cars_df.groupBy('Origin').agg(f.count('Origin')).show()
 
     
-    log.info('========================SSave the result========================S')
+    log.info('========================Save the result========================')
     cars_df.write.format('parquet').mode('overwrite').save('output/grouped_estates/')
 
 
